@@ -10,6 +10,108 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* LOCK SCREEN */
+#lock-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.lock-box {
+  text-align: center;
+  padding: 48px 40px;
+  max-width: 360px;
+  width: 100%;
+}
+
+.lock-icon {
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.lock-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1a1714;
+  margin-bottom: 6px;
+}
+
+.lock-sub {
+  font-size: 0.85rem;
+  color: #9a9088;
+  margin-bottom: 32px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+}
+
+.lock-input {
+  width: 100%;
+  padding: 13px 18px;
+  border: 1.5px solid rgba(0,0,0,0.12);
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #1a1714;
+  background: #fafafa;
+  outline: none;
+  text-align: center;
+  letter-spacing: 2px;
+  transition: border-color 0.2s;
+  margin-bottom: 14px;
+}
+
+.lock-input:focus { border-color: #a07830; }
+.lock-input.error { border-color: #c0392b; animation: shake 0.3s ease; }
+
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+
+.lock-btn {
+  width: 100%;
+  padding: 13px;
+  background: #1a1714;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.lock-btn:hover { background: #a07830; }
+
+.lock-error {
+  font-size: 0.8rem;
+  color: #c0392b;
+  margin-top: 12px;
+  min-height: 18px;
+}
+
+.lock-line {
+  width: 40px;
+  height: 2px;
+  background: #a07830;
+  margin: 20px auto 0;
+  border-radius: 2px;
+  opacity: 0.4;
+}
+
 :root {
   --bg: #ffffff;
   --surface: #f7f5f2;
@@ -346,6 +448,19 @@ footer {
 </style>
 </head>
 <body>
+
+<!-- LOCK SCREEN -->
+<div id="lock-screen">
+  <div class="lock-box">
+    <span class="lock-icon">🔒</span>
+    <div class="lock-title">Shaif's Bucket List</div>
+    <p class="lock-sub">A private life, carefully curated.</p>
+    <input class="lock-input" id="lock-input" type="password" placeholder="Enter password" autocomplete="off" />
+    <button class="lock-btn" onclick="checkPassword()">Unlock</button>
+    <div class="lock-error" id="lock-error"></div>
+    <div class="lock-line"></div>
+  </div>
+</div>
 
 <nav>
   <span class="nav-brand">Shaif's Bucket List</span>
@@ -751,6 +866,36 @@ const VOL2 = [
     ]
   }
 ];
+
+// ─── PASSWORD LOCK ─────────────────────────────────────────────────────────
+const PASS = 'Claude_Shaif_2026';
+
+function checkPassword() {
+  const val = document.getElementById('lock-input').value;
+  const inp = document.getElementById('lock-input');
+  const err = document.getElementById('lock-error');
+  if (val === PASS) {
+    try { sessionStorage.setItem('unlocked', '1'); } catch(e) {}
+    document.getElementById('lock-screen').style.display = 'none';
+  } else {
+    inp.classList.add('error');
+    err.textContent = 'Incorrect password. Try again.';
+    inp.value = '';
+    setTimeout(() => inp.classList.remove('error'), 400);
+  }
+}
+
+document.getElementById('lock-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') checkPassword();
+  document.getElementById('lock-error').textContent = '';
+});
+
+// Auto-unlock if already authenticated this session
+try {
+  if (sessionStorage.getItem('unlocked') === '1') {
+    document.getElementById('lock-screen').style.display = 'none';
+  }
+} catch(e) {}
 
 // ─── RENDER ────────────────────────────────────────────────────────────────
 
