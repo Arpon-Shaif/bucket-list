@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shaif's Bucket List — 200 Things Before The Story Ends</title>
+<meta name="description" content="A personal bucket list — 200 life goals across travel, legacy, creativity, love, faith, and joy.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0e0e12;
+  --surface: #16161c;
+  --border: rgba(255,255,255,0.07);
+  --gold: #c9a84c;
+  --text: #e8e4da;
+  --muted: #6a6460;
+  --rust: #b5451b;
+  --green: #8ab87e;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  background-image:
+    radial-gradient(ellipse 90% 40% at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 100% 100%, rgba(181,69,27,0.04) 0%, transparent 50%);
+}
+
+/* NAV */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(14,14,18,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  height: 56px;
+}
+
+.nav-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--gold);
+  margin-right: auto;
+  letter-spacing: 0.5px;
+}
+
+.tab-btn {
+  height: 56px;
+  padding: 0 22px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--muted);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+.global-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 20px;
+  padding-left: 20px;
+  border-left: 1px solid var(--border);
+}
+
+.gp-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+.gp-num { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--gold); }
+
+/* PANELS */
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 90px 40px 70px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(201,168,76,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 22px;
+  display: block;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1.08;
+  margin-bottom: 22px;
+}
+
+.hero h1 em { color: var(--gold); font-style: italic; }
+
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--muted);
+  max-width: 500px;
+  margin: 0 auto 36px;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.stat { text-align: center; }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+/* PROGRESS OVERVIEW */
+.overview {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 48px 40px;
+}
+
+.ov-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  margin-bottom: 28px;
+  color: var(--text);
+}
+
+.ov-bar-wrap { margin-bottom: 12px; }
+.ov-bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.ov-bar {
+  height: 4px;
+  background: var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+
+.ov-fill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* LIST CONTENT */
+.list-page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 60px 40px 100px;
+}
+
+/* SECTION */
+.section { margin-bottom: 58px; animation: rise 0.5s ease both; }
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+.sec-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.sec-icon {
+  font-size: 20px;
+  width: 36px;
+  text-align: center;
+}
+
+.sec-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  color: var(--text);
+}
+
+.sec-count {
+  margin-left: auto;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ITEMS */
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 11px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s;
+  margin-bottom: 2px;
+  border-left: 2px solid transparent;
+}
+
+.item:hover { background: rgba(255,255,255,0.025); }
+
+.item.done {
+  border-left-color: var(--green);
+  background: rgba(138,184,126,0.04);
+}
+
+.item.done .item-text {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+.cb {
+  width: 18px; height: 18px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 3px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  transition: all 0.15s;
+  color: transparent;
+}
+
+.item.done .cb {
+  background: var(--green);
+  border-color: var(--green);
+  color: #0e0e12;
+}
+
+.item-num {
+  font-size: 10px;
+  color: var(--muted);
+  min-width: 28px;
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+}
+
+.item-body { flex: 1; }
+
+.item-text {
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.55;
+}
+
+.item-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-top: 2px;
+  display: block;
+}
+
+.sep { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 48px 40px 70px;
+  border-top: 1px solid var(--border);
+}
+
+.footer-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--muted);
+  max-width: 480px;
+  margin: 0 auto 18px;
+  line-height: 1.7;
+}
+
+.footer-sig {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(201,168,76,0.35);
+}
+
+@media (max-width: 600px) {
+  nav { padding: 0 16px; }
+  .tab-btn { padding: 0 14px; font-size: 10px; }
+  .hero { padding: 60px 20px 50px; }
+  .list-page { padding: 40px 18px 80px; }
+  .overview { padding: 40px 20px; }
+  .global-progress { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">Shaif's Bucket List</span>
+  <button class="tab-btn active" onclick="showTab('home')">Home</button>
+  <button class="tab-btn" onclick="showTab('vol1')">Vol. I · 1–100</button>
+  <button class="tab-btn" onclick="showTab('vol2')">Vol. II · 101–200</button>
+  <div class="global-progress">
+    <span class="gp-label">Done</span>
+    <span class="gp-num" id="global-count">0</span>
+    <span class="gp-label">/ 200</span>
+  </div>
+</nav>
+
+<!-- HOME PANEL -->
+<div class="panel active" id="panel-home">
+  <div class="hero">
+    <span class="hero-eyebrow">A Life Well Lived · Dhaka, Bangladesh</span>
+    <h1>200 Things Before<br><em>The Story Ends</em></h1>
+    <p class="hero-sub">A personal bucket list crafted at 34 — for a curious mind, warm heart, and ambitious spirit.</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">200</div>
+        <div class="stat-label">Total Goals</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" id="home-done">0</div>
+        <div class="stat-label">Completed</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" id="home-remain">200</div>
+        <div class="stat-label">Remaining</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" id="home-pct">0%</div>
+        <div class="stat-label">Of Life's List</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="overview">
+    <div class="ov-title">Overall Progress</div>
+
+    <div class="ov-bar-wrap">
+      <div class="ov-bar-label">
+        <span>Volume I — The First 100</span>
+        <span id="v1-label">0 / 100</span>
+      </div>
+      <div class="ov-bar">
+        <div class="ov-fill" id="v1-fill" style="width:0%;background:linear-gradient(90deg,#c8a96e,#d4a843)"></div>
+      </div>
+    </div>
+
+    <div class="ov-bar-wrap">
+      <div class="ov-bar-label">
+        <span>Volume II — The Next 100</span>
+        <span id="v2-label">0 / 100</span>
+      </div>
+      <div class="ov-bar">
+        <div class="ov-fill" id="v2-fill" style="width:0%;background:linear-gradient(90deg,#7eb8c9,#b89adc)"></div>
+      </div>
+    </div>
+
+    <div class="ov-bar-wrap" style="margin-top:28px">
+      <div class="ov-bar-label">
+        <span style="color:var(--gold)">Total Life Progress</span>
+        <span id="total-label" style="color:var(--gold)">0 / 200</span>
+      </div>
+      <div class="ov-bar" style="height:6px">
+        <div class="ov-fill" id="total-fill" style="width:0%;background:linear-gradient(90deg,#c9a84c,#e8c870)"></div>
+      </div>
+    </div>
+
+    <p style="margin-top:40px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--muted);line-height:1.8">
+      "Most men lead lives of quiet desperation and go to the grave with the song still in them."<br>
+      <span style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;font-style:normal">— Henry David Thoreau</span>
+    </p>
+    <p style="margin-top:20px;font-size:0.88rem;color:var(--muted);line-height:1.7">
+      This is your song. Check items off as you live them — progress saves in your browser. Come back to this page whenever you need a reminder of what you're building toward.
+    </p>
+  </div>
+</div>
+
+<!-- VOL 1 PANEL -->
+<div class="panel" id="panel-vol1">
+  <div class="list-page" id="v1-content"></div>
+</div>
+
+<!-- VOL 2 PANEL -->
+<div class="panel" id="panel-vol2">
+  <div class="list-page" id="v2-content"></div>
+</div>
+
+<footer>
+  <p class="footer-quote">"The purpose of life is to live it, to taste experience to the utmost, to reach out eagerly and without fear for newer and richer experience."</p>
+  <p class="footer-sig">Shaif · 34 · Dhaka · Two volumes. One life.</p>
+</footer>
+
+<script>
+// ─── DATA ──────────────────────────────────────────────────────────────────
+
+const VOL1 = [
+  {
+    title: "Travel & Exploration", emoji: "🌍", color: "#7eb8c9",
+    items: [
+      { t: "Walk the streets of Istanbul at dawn", n: "Where East meets West — and history is still breathing" },
+      { t: "See the Northern Lights in Norway or Iceland", n: "Nature's most dramatic light show" },
+      { t: "Spend a week in Japan during cherry blossom season", n: "Kyoto in April is incomparable" },
+      { t: "Take a road trip across Europe with your wife", n: "Spain → France → Italy in one sweep" },
+      { t: "Visit the Sundarbans for a real tiger sighting", n: "Right in your backyard, yet most Bangladeshis never truly go" },
+      { t: "Attend the World Cup (football) live in a stadium", n: "Any match, any round — the energy is worth it" },
+      { t: "Explore Cox's Bazar at sunrise alone, just once", n: "The longest beach in the world deserves a quiet moment" },
+      { t: "Stay in a ryokan (traditional Japanese inn)", n: "Tatami mats, onsen, silence" },
+      { t: "Visit Petra, Jordan — the rose-red city", n: "One of the most breathtaking sights on Earth" },
+      { t: "Take a houseboat stay in Kerala, India", n: "Backwaters, coconut groves, total stillness" },
+    ]
+  },
+  {
+    title: "Career & Legacy", emoji: "💼", color: "#c9a84c",
+    items: [
+      { t: "Lead or co-author a published research paper on fintech or financial inclusion in Bangladesh" },
+      { t: "Represent City Bank (or Bangladesh) at an international banking forum", n: "Speak on a panel, not just attend" },
+      { t: "Mentor at least 5 junior bankers who go on to lead", n: "Your legacy lives in people" },
+      { t: "Build or co-found a fintech startup, even a small one", n: "The EEE + MBA combo is rare — use it" },
+      { t: "Get a promotion to C-suite or Senior VP before 40", n: "You're on track — keep the trajectory" },
+      { t: "Secure an international fellowship or executive program abroad", n: "Wharton, LBS, Harvard Executive Ed" },
+      { t: "Be profiled in a business magazine or newspaper", n: "Daily Star, The Business Standard, or beyond" },
+      { t: "Launch a product that serves 1 million users", n: "Digital Nano Loan is already heading there" },
+      { t: "Deliver a TEDx talk in Dhaka", n: "On digital finance, inclusion, or the future of Bangladesh" },
+      { t: "Achieve genuine financial independence — passive income covers basic living" },
+    ]
+  },
+  {
+    title: "Learning & Intellectual Growth", emoji: "📚", color: "#8ab87e",
+    items: [
+      { t: "Read 100 books cover to cover (keep a list)", n: "Track it — the list itself becomes a memoir" },
+      { t: "Learn conversational Arabic or Mandarin", n: "Both open enormous professional doors in your world" },
+      { t: "Take a serious philosophy course — online or in person", n: "Your fiction writing already shows you're drawn to it" },
+      { t: "Study Islamic finance deeply — not just the basics", n: "Relevant to both your faith and your profession" },
+      { t: "Complete a short course in behavioral economics", n: "Kahneman's world will change how you see lending" },
+      { t: "Learn to code a full mobile app from scratch", n: "You've already built React apps — go deeper" },
+      { t: "Take a structured creative writing course", n: "Your Bangla fiction deserves craft-level honing" },
+      { t: "Master one instrument — oud, guitar, or piano", n: "Even basic proficiency is a lifetime companion" },
+      { t: "Read the complete works of Rabindranath Tagore", n: "All of it, not just the famous ones" },
+      { t: "Learn the basics of astronomy — stargazing with purpose", n: "An EEE brain will find the math beautiful" },
+    ]
+  },
+  {
+    title: "Creativity & Expression", emoji: "✍️", color: "#b89adc",
+    items: [
+      { t: "Publish a Bangla novel under your own name", n: "সমান্তরালে was a draft — now make it real" },
+      { t: "Start and maintain a personal blog for 2 full years", n: "On finance, life, or Bangladesh — authentic voice" },
+      { t: "Write a short film script and see it produced", n: "Even a 10-minute short counts" },
+      { t: "Co-author a children's book in Bangla with your wife", n: "A project only the two of you can make" },
+      { t: "Keep a handwritten journal consistently for one full year" },
+      { t: "Create a photo essay of Puran Dhaka's architecture and people", n: "A city within a city — document it before it changes" },
+      { t: "Compose an original piece of music — even a simple melody", n: "One track, your name on it" },
+      { t: "Translate one great short story from English to Bangla", n: "Or vice versa — bridge two worlds" },
+      { t: "Make a short documentary about digital financial inclusion in rural Bangladesh" },
+      { t: "Design something physical — a piece of furniture, a room, a product", n: "Engineer brains make beautiful things" },
+    ]
+  },
+  {
+    title: "Marriage & Love", emoji: "❤️", color: "#c97b6a",
+    items: [
+      { t: "Take an anniversary trip to a new country every 5 years", n: "One for 5th, one for 10th, one for 15th…" },
+      { t: "Cook a full elaborate meal for your wife from scratch", n: "No delivery, no help — just you and the kitchen" },
+      { t: "Write her a long letter every year on her birthday", n: "Physical, handwritten — keep them all in a box" },
+      { t: "Take a digital-free weekend with her — phones off", n: "Just you two, somewhere quiet" },
+      { t: "Learn her love language deeply and consciously practice it", n: "Read the book. Apply it seriously." },
+      { t: "Watch 100 great films together, curated list", n: "Make it a ritual — Friday nights, popcorn, a ranked list" },
+      { t: "Build something meaningful together — a home, a project, a charity" },
+      { t: "Take a spontaneous trip she didn't know about until the day of", n: "Surprise her completely, once" },
+      { t: "Renew your vows at 10 years — even informally, meaningfully" },
+      { t: "Make her laugh every single day — make it a habit, not an afterthought" },
+    ]
+  },
+  {
+    title: "Health & Body", emoji: "🏋️", color: "#4a9c6a",
+    items: [
+      { t: "Complete a half marathon (21km)", n: "Train for 6 months — the discipline alone transforms you" },
+      { t: "Reach and maintain your ideal weight for 2 consecutive years", n: "Sustainable, not crash" },
+      { t: "Do a 7-day digital detox", n: "No phone, no laptop — real withdrawal, real reset" },
+      { t: "Learn to swim properly if you can't already", n: "A life skill that's also pure joy" },
+      { t: "Try a 72-hour fast (with medical guidance)", n: "Mental clarity from it is unlike anything else" },
+      { t: "Do 100 consecutive push-ups in one set", n: "A benchmark worth chasing" },
+      { t: "Go on a serious hiking trek — at least 3 days", n: "Himalayas are 2 hours away by flight" },
+      { t: "Get a full health screening every year without fail", n: "Bank on your health like you bank on returns" },
+      { t: "Try a water sport — kayaking, sailing, or surfing", n: "Cox's Bazar or the Sundarbans waterways" },
+      { t: "Meditate for 20 minutes daily for 90 straight days", n: "Not an app — real stillness" },
+    ]
+  },
+  {
+    title: "Spirituality & Purpose", emoji: "🕌", color: "#c9a84c",
+    items: [
+      { t: "Perform Hajj", n: "The journey of a lifetime — plan it intentionally" },
+      { t: "Complete a full reading of the Quran with tafsir (commentary)", n: "Not just recitation — deep understanding" },
+      { t: "Spend 40 days in serious spiritual retreat or itikaf", n: "Disconnect from the world to reconnect with what matters" },
+      { t: "Give 10% of annual income to charity for 10 consecutive years", n: "Make zakat a discipline, not an obligation" },
+      { t: "Build or fund a water well or school in a village", n: "Sadaqah jariyah — good that outlives you" },
+      { t: "Memorize 30 surahs from the Quran", n: "Carry them everywhere, always" },
+      { t: "Volunteer meaningfully for a cause — not just donate money", n: "Time is the more precious gift" },
+      { t: "Have a serious conversation with a scholar you deeply respect", n: "Not just a lecture — a real exchange" },
+      { t: "Leave behind a waqf (endowment) of some form", n: "Land, scholarship, library — something permanent" },
+      { t: "Write your own obituary — and live toward it", n: "The most clarifying exercise you'll ever do" },
+    ]
+  },
+  {
+    title: "Family & Relationships", emoji: "👨‍👩‍👧", color: "#7eb8c9",
+    items: [
+      { t: "Record long oral history interviews with your parents and grandparents", n: "Before those stories are gone forever" },
+      { t: "Create a family archive — photos, documents, stories — organized" },
+      { t: "Take your parents on an international trip", n: "Before age or health makes it impossible" },
+      { t: "Host a large family reunion — cousins, relatives, the whole network" },
+      { t: "Be present — truly present — at every milestone of your children", n: "Not on the phone, not distracted" },
+      { t: "Build or buy the family home you always imagined", n: "Not just functional — beautiful and yours" },
+      { t: "Establish a family tradition that outlasts you", n: "Annual trip, monthly dinner, whatever — consistent" },
+      { t: "Repair or deepen any fractured relationship that matters to you", n: "Before time makes it too late" },
+      { t: "Find 3 lifelong friends — not network contacts, real friends", n: "Rare, irreplaceable, worth the investment" },
+      { t: "Throw a legendary birthday party — yours or someone else's", n: "The kind people talk about for years" },
+    ]
+  },
+  {
+    title: "Tech, Finance & Innovation", emoji: "💡", color: "#dc9a6a",
+    items: [
+      { t: "Invest in a startup early and watch it grow", n: "Angel investment, even small — join the ecosystem" },
+      { t: "Build a personal investment portfolio with 5 distinct asset classes", n: "Equities, real estate, gold, bonds, alternatives" },
+      { t: "Own property outright — no debt, fully yours" },
+      { t: "Achieve 1 crore BDT in net liquid assets (outside home)", n: "A meaningful milestone for financial security" },
+      { t: "Build an AI-powered tool that solves a real Bangladesh problem", n: "You have the skill set — use it" },
+      { t: "Attend CES, Davos, or a world-class innovation summit", n: "See the future up close" },
+      { t: "Write a case study about Digital Nano Loan that gets academic citation", n: "Your work deserves scholarly recognition" },
+      { t: "Learn quantitative finance — options, derivatives, risk models", n: "Go deeper than your MBA" },
+      { t: "Build a second income stream that runs without you", n: "Rental income, SaaS, royalties — pick one" },
+      { t: "Advise or join the board of a nonprofit or startup", n: "Your expertise is governance-level" },
+    ]
+  },
+  {
+    title: "Wild Cards & Pure Joy", emoji: "✨", color: "#b89adc",
+    items: [
+      { t: "Watch a live opera or symphony orchestra performance", n: "Once. You might be surprised." },
+      { t: "Skinny dip in the ocean", n: "Midnight, private beach, your wife — no further explanation needed" },
+      { t: "Sleep under the open stars in a desert", n: "Sahara, Thar, or Rann of Kutch" },
+      { t: "Ride a motorcycle across Bangladesh — Dhaka to Chittagong Hill Tracts", n: "The country will look different at 60 km/h" },
+      { t: "Try fasting for an entire month of Ramadan without missing a single fast", n: "Complete, conscious, whole" },
+      { t: "Take a solo trip — just you, no phone except for emergencies", n: "Discover what you're like when alone" },
+      { t: "Eat at a Michelin-starred restaurant — at least once", n: "Not for the status — for the craft" },
+      { t: "Learn to draw or paint — even badly, just sincerely", n: "Your right brain deserves exercise" },
+      { t: "Write a love letter and send it via actual post mail", n: "Stamp, envelope, postmark — the full thing" },
+      { t: "On your 50th birthday, read this list and check off what you did", n: "The unchecked ones become the next list" },
+    ]
+  }
+];
+
+const VOL2 = [
+  {
+    title: "The Thinker's Table", emoji: "🧠", color: "#7eb8c9",
+    items: [
+      { t: "Read every book on Will Durant's recommended reading list", n: "The man who read everything — let him guide you" },
+      { t: "Debate a serious intellectual topic with someone who completely disagrees", n: "Not to win — to genuinely understand" },
+      { t: "Learn the basics of Stoic philosophy and apply it for 30 days", n: "Marcus Aurelius understood power and humility simultaneously" },
+      { t: "Study the history of money — from barter to crypto", n: "As a banker, this is your origin story" },
+      { t: "Take a course in logic and critical thinking", n: "The engineering mind sharpens further with formal logic" },
+      { t: "Understand one mathematical concept that always scared you", n: "Calculus, statistics, topology — pick your dragon" },
+      { t: "Read the Muqaddimah by Ibn Khaldun", n: "The world's first sociologist — and a Muslim — 600 years ago" },
+      { t: "Follow a rabbit hole for 72 hours straight — research one obsessive topic end to end" },
+      { t: "Attend a world-class lecture by someone you deeply admire", n: "Not a podcast — a live room, real presence" },
+      { t: "Learn to speed read and actually double your reading pace", n: "500 books in a lifetime vs 1,000 — the gap matters" },
+    ]
+  },
+  {
+    title: "The Builder's Bench", emoji: "🔧", color: "#c9a84c",
+    items: [
+      { t: "Build a physical object entirely from scratch — a shelf, a table, a lamp" },
+      { t: "Design and 3D print something useful", n: "Even a phone stand — the making is the point" },
+      { t: "Restore a piece of broken antique furniture to full use" },
+      { t: "Build a personal knowledge system (Zettelkasten or second brain)", n: "Every idea you've ever had, connected" },
+      { t: "Create a full product prototype — hardware or software — and pitch it to someone" },
+      { t: "Automate something in your home using a Raspberry Pi or Arduino", n: "The EEE degree never retires" },
+      { t: "Grow something edible on a rooftop or balcony garden", n: "Dhaka rooftops are underused — reclaim one" },
+      { t: "Commission a piece of art from a Bangladeshi artist and hang it permanently" },
+      { t: "Help design the layout of a room or space from zero to complete" },
+      { t: "Make a piece of jewelry or craft gift entirely by hand for your wife" },
+    ]
+  },
+  {
+    title: "The Wanderer's Map", emoji: "🗺️", color: "#c97b6a",
+    items: [
+      { t: "Take the Trans-Siberian Railway — even one segment of it", n: "8 days, 9,000km, pure cinematic experience" },
+      { t: "Visit all 64 districts of Bangladesh in your lifetime", n: "You live here — know it fully" },
+      { t: "Spend Eid in a completely foreign country, far from home", n: "The contrast will deepen what it means to you" },
+      { t: "Sail on a traditional wooden boat — naukka — on the Padma or Meghna at sunset" },
+      { t: "Cross an international border on foot or by train, not plane", n: "Benapole–Petrapole, slow and deliberate" },
+      { t: "Visit the ancient ruins of Mahasthangarh", n: "2,500 years of history, three hours from Dhaka" },
+      { t: "Spend a week in Egypt — the pyramids and the Nile deserve your full attention" },
+      { t: "Eat street food for every meal for one full week in a foreign city" },
+      { t: "Take a long train journey through India — Mumbai to Chennai, or Delhi to Kolkata" },
+      { t: "Visit Bali and spend time genuinely learning its artistic culture", n: "Not the tourist strip — the real village life" },
+    ]
+  },
+  {
+    title: "The Writer's Desk", emoji: "✒️", color: "#b89adc",
+    items: [
+      { t: "Write your memoir — even 50 pages — before you turn 50", n: "Not for publishing. For clarity." },
+      { t: "Complete a 30-day writing challenge — one piece every single day" },
+      { t: "Write a long essay on what you believe about life, work, and meaning", n: "Share it or keep it — either way, write it" },
+      { t: "Get a piece published in a national Bangla literary magazine" },
+      { t: "Write a short story entirely in one sitting — 3 hours, start to finish" },
+      { t: "Compile all your best ideas into a personal manifesto", n: "What do you stand for, as a person?" },
+      { t: "Write detailed letters to your future children or future self — to be opened in 20 years" },
+      { t: "Translate a poem you love into another language", n: "Tagore in English, or Rumi in Bangla — feel what gets lost" },
+      { t: "Start a newsletter, even with 10 subscribers — on anything you care about" },
+      { t: "Keep a dream journal for 6 consecutive months", n: "The subconscious has more to say than you think" },
+    ]
+  },
+  {
+    title: "The Quiet Hours", emoji: "🌙", color: "#8ab87e",
+    items: [
+      { t: "Wake before Fajr every day for 40 days and sit in silence before the world wakes" },
+      { t: "Watch a complete sunrise and sunset on the same day, at two different locations" },
+      { t: "Spend a full day doing absolutely nothing — no productivity, no guilt" },
+      { t: "Sit with an elderly person for an afternoon — just listen to their life" },
+      { t: "Take a long walk with no destination — 3 hours, wherever your feet go" },
+      { t: "Memorize 10 poems by heart — Tagore, Nazrul, Neruda, Rumi" },
+      { t: "Revisit your childhood neighborhood and find what still exists", n: "The corner shop, the tree, the alley — find the thread" },
+      { t: "Attend a Qawwali or traditional Baul music performance live" },
+      { t: "Read an entire book in one sitting — start at dawn, finish by dusk" },
+      { t: "Sit by the Buriganga at dusk and just watch the boats for an hour", n: "History moves on that water" },
+    ]
+  },
+  {
+    title: "The Marriage Chapter", emoji: "💍", color: "#dc9a6a",
+    items: [
+      { t: "Take a language class together — learn something new as a team" },
+      { t: "Build a shared bucket list with her and complete 10 items from it together" },
+      { t: "Give her a full day entirely designed around her — her interests, her pace, her choices" },
+      { t: "Have one completely honest, no-filter conversation about your deepest fears and dreams" },
+      { t: "Learn one skill from her that she's better at than you", n: "Real learning, not performative" },
+      { t: "Frame and hang a photograph from every major life milestone together — one wall, your story" },
+      { t: "Take a ballroom or salsa dance class together", n: "Awkward at first, unforgettable after" },
+      { t: "Create a 'time capsule' box — letters, mementos, small objects — to open at 50" },
+      { t: "Plan and build your dream home interior together — every room, every choice" },
+      { t: "Once a year, write a letter to her describing the year that passed — what you noticed, what you loved" },
+    ]
+  },
+  {
+    title: "The Long Game — Legacy", emoji: "🏛️", color: "#7eb8c9",
+    items: [
+      { t: "Plant 100 trees in your lifetime — document them all" },
+      { t: "Fund one student's full university education who couldn't afford it" },
+      { t: "Create a scholarship in your or your family's name at your alma mater" },
+      { t: "Write a detailed guide on your professional field — digital lending in Bangladesh — free for all" },
+      { t: "Speak at your university as a guest — give the students what you wish you'd heard" },
+      { t: "Leave a copy of your journals, essays, and creative work in the national library" },
+      { t: "Build something in your parents' village or hometown — a road, a well, a classroom" },
+      { t: "Teach a skill — seriously, to a group — at least once in your life" },
+      { t: "Support a young Bangladeshi entrepreneur with mentorship and capital", n: "Not just advice — be present, be invested" },
+      { t: "Live your values so consistently that the people around you are changed by it", n: "This is the hardest one on both lists" },
+    ]
+  },
+  {
+    title: "The Body's Journey", emoji: "⚡", color: "#c9a84c",
+    items: [
+      { t: "Complete a full triathlon — swim, cycle, run", n: "Pick the sprint distance to start" },
+      { t: "Try yoga seriously for 60 days — not stretching, real practice" },
+      { t: "Climb a peak above 3,000m — Himalayas are accessible from Dhaka", n: "Annapurna Base Camp is 4,130m" },
+      { t: "Go completely sugar-free for 90 days", n: "The mental clarity at day 30 is remarkable" },
+      { t: "Learn basic first aid and CPR — and actually be certified" },
+      { t: "Try a cold water plunge practice for 30 days", n: "Uncomfortable. Transformative." },
+      { t: "Cycle across a significant distance — Dhaka to Manikganj or further" },
+      { t: "Do a full body strength test at a gym — know your actual baseline" },
+      { t: "Sleep 8 hours a night consistently for 3 months — track the effects" },
+      { t: "Go one month without any junk food — track how you feel at the end" },
+    ]
+  },
+  {
+    title: "The Bold Moves", emoji: "🎯", color: "#c97b6a",
+    items: [
+      { t: "Negotiate something significant — salary, deal, price — where you normally wouldn't" },
+      { t: "Say a hard truth to someone who needs to hear it, with love", n: "Not to hurt — to actually help" },
+      { t: "Start something you're afraid to fail at", n: "The fear is the exact indicator of where to go" },
+      { t: "Quit one habit cold turkey that you know is holding you back" },
+      { t: "Apply for something you think you're underqualified for — let them reject you, not you yourself" },
+      { t: "Give a gift so generous it makes you slightly uncomfortable", n: "Stretch your instinct for giving" },
+      { t: "Have the conversation you've been postponing for years", n: "You know which one" },
+      { t: "Ask for forgiveness from someone you wronged — even long ago" },
+      { t: "Say no — confidently, without guilt — to something big that doesn't serve your values" },
+      { t: "Commit publicly to a goal, with a deadline, to people who will hold you accountable" },
+    ]
+  },
+  {
+    title: "Pure, Unreasonable Joy", emoji: "🎆", color: "#b89adc",
+    items: [
+      { t: "Attend a live concert of an artist you've loved for years", n: "Not a local show — travel for it if needed" },
+      { t: "Go to a comedy show and laugh until your sides hurt" },
+      { t: "Try paragliding or skydiving — once, to know what free feels like" },
+      { t: "Spend a night in a five-star hotel — not for travel, just to experience it once" },
+      { t: "Order the tasting menu at a restaurant and eat every course, slowly" },
+      { t: "Learn a magic trick well enough to genuinely fool someone" },
+      { t: "Play a video game from start to finish — an epic story-driven one", n: "Red Dead Redemption 2, The Last of Us — pick one" },
+      { t: "Watch the sunrise from the top of a hill or mountain — somewhere you hiked to reach" },
+      { t: "Take a spontaneous solo day trip — decide destination on the morning of" },
+      { t: "On your 60th birthday, read both lists — and write the third", n: "The story is never finished" },
+    ]
+  }
+];
+
+// ─── RENDER ────────────────────────────────────────────────────────────────
+
+function buildList(data, container, prefix, startNum) {
+  let num = startNum;
+  data.forEach((sec, si) => {
+    const div = document.createElement('div');
+    div.className = 'section';
+    div.style.animationDelay = (si * 0.05) + 's';
+
+    const hdr = document.createElement('div');
+    hdr.className = 'sec-header';
+    hdr.innerHTML = `
+      <span class="sec-icon">${sec.emoji}</span>
+      <span class="sec-title" style="color:${sec.color}">${sec.title}</span>
+      <span class="sec-count">${sec.items.length} items</span>
+    `;
+    div.appendChild(hdr);
+
+    sec.items.forEach(item => {
+      const key = `${prefix}_${num}`;
+      const done = (() => { try { return localStorage.getItem(key) === '1'; } catch(e) { return false; } })();
+      const el = document.createElement('div');
+      el.className = 'item' + (done ? ' done' : '');
+      el.innerHTML = `
+        <div class="cb">${done ? '✓' : ''}</div>
+        <span class="item-num">${num}</span>
+        <div class="item-body">
+          <span class="item-text">${item.t}</span>
+          ${item.n ? `<span class="item-note">${item.n}</span>` : ''}
+        </div>
+      `;
+      el.addEventListener('click', () => {
+        const now = !el.classList.contains('done');
+        el.classList.toggle('done');
+        el.querySelector('.cb').innerHTML = now ? '✓' : '';
+        try { localStorage.setItem(key, now ? '1' : '0'); } catch(e) {}
+        updateAll();
+      });
+      div.appendChild(el);
+      num++;
+    });
+
+    if (si < data.length - 1) {
+      const sep = document.createElement('hr');
+      sep.className = 'sep';
+      div.appendChild(sep);
+    }
+    container.appendChild(div);
+  });
+}
+
+function countDone(prefix, start, end) {
+  let n = 0;
+  try {
+    for (let i = start; i <= end; i++) {
+      if (localStorage.getItem(`${prefix}_${i}`) === '1') n++;
+    }
+  } catch(e) {}
+  return n;
+}
+
+function updateAll() {
+  const v1 = countDone('v1', 1, 100);
+  const v2 = countDone('v2', 101, 200);
+  const total = v1 + v2;
+
+  document.getElementById('global-count').textContent = total;
+  document.getElementById('home-done').textContent = total;
+  document.getElementById('home-remain').textContent = 200 - total;
+  document.getElementById('home-pct').textContent = total + '%';
+
+  document.getElementById('v1-fill').style.width = v1 + '%';
+  document.getElementById('v2-fill').style.width = v2 + '%';
+  document.getElementById('total-fill').style.width = (total / 2) + '%';
+
+  document.getElementById('v1-label').textContent = v1 + ' / 100';
+  document.getElementById('v2-label').textContent = v2 + ' / 100';
+  document.getElementById('total-label').textContent = total + ' / 200';
+}
+
+function showTab(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Init
+buildList(VOL1, document.getElementById('v1-content'), 'v1', 1);
+buildList(VOL2, document.getElementById('v2-content'), 'v2', 101);
+updateAll();
+</script>
+</body>
+</html>
