@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,14 +11,14 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #0e0e12;
-  --surface: #16161c;
-  --border: rgba(255,255,255,0.07);
-  --gold: #c9a84c;
-  --text: #e8e4da;
-  --muted: #6a6460;
+  --bg: #ffffff;
+  --surface: #f7f5f2;
+  --border: rgba(0,0,0,0.08);
+  --gold: #a07830;
+  --text: #1a1714;
+  --muted: #9a9088;
   --rust: #b5451b;
-  --green: #8ab87e;
+  --green: #4a8c5c;
 }
 
 body {
@@ -27,8 +28,8 @@ body {
   font-weight: 300;
   min-height: 100vh;
   background-image:
-    radial-gradient(ellipse 90% 40% at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 100% 100%, rgba(181,69,27,0.04) 0%, transparent 50%);
+    radial-gradient(ellipse 90% 40% at 50% 0%, rgba(160,120,48,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 100% 100%, rgba(181,69,27,0.03) 0%, transparent 50%);
 }
 
 /* NAV */
@@ -36,7 +37,7 @@ nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(14,14,18,0.92);
+  background: rgba(255,255,255,0.92);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   padding: 0 40px;
@@ -104,7 +105,7 @@ nav {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(201,168,76,0.05) 0%, transparent 70%);
+  background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(160,120,48,0.06) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -251,11 +252,11 @@ nav {
   border-left: 2px solid transparent;
 }
 
-.item:hover { background: rgba(255,255,255,0.025); }
+.item:hover { background: rgba(0,0,0,0.025); }
 
 .item.done {
   border-left-color: var(--green);
-  background: rgba(138,184,126,0.04);
+  background: rgba(74,140,92,0.05);
 }
 
 .item.done .item-text {
@@ -265,7 +266,7 @@ nav {
 
 .cb {
   width: 18px; height: 18px;
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(0,0,0,0.18);
   border-radius: 3px;
   flex-shrink: 0;
   margin-top: 3px;
@@ -280,7 +281,7 @@ nav {
 .item.done .cb {
   background: var(--green);
   border-color: var(--green);
-  color: #0e0e12;
+  color: #fff;
 }
 
 .item-num {
